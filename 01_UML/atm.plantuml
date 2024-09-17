@@ -1,0 +1,80 @@
+@startuml ATM működése
+
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+autonumber
+
+participant Ügyfél as customer
+participant ATM as atm
+participant Bankfiók as account
+participant Bank as bank
+
+customer -> atm : Bankkártya behelyezése
+activate atm
+atm -> customer : PIN bekérése
+deactivate atm
+
+activate customer
+customer -> atm : PIN bevitele
+deactivate customer
+
+activate atm
+atm -> account : PIN validálása
+deactivate atm
+
+activate account
+return <font color=green> PIN elfogadva
+deactivate account
+
+activate atm #green
+atm -> customer : Művelet kérése
+deactivate atm
+
+activate customer
+customer -> atm : Művelet kiválasztása
+deactivate customer
+
+activate atm
+atm -> customer : Mennyiség kérése
+deactivate atm
+
+activate customer
+customer -> atm : Mennyiség bevitele
+deactivate customer
+
+activate atm
+atm -> account : Tranzakció feldolgozása
+deactivate atm
+
+activate account
+account -> bank : Összeg levonása
+deactivate account
+
+activate bank
+return <font color=green> Sikeres levonás
+deactivate bank
+
+activate account #green
+account -[#green]> atm : <font color=green> Sikeres tranzakció
+deactivate account
+
+activate atm 
+atm -> customer : Készpénz kiadása
+
+
+activate customer
+atm -> customer : Készpénz elvétel kérése
+deactivate atm
+
+customer -[#green]> atm  : Készpénz elvétele sikeres
+deactivate customer
+
+activate atm #green
+return <font color=green> Bizonylat nyomtatása
+deactivate atm
+
+activate customer
+customer -> atm : Kártya elvétele
+deactivate customer
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml Strategy Pattern
+
+interface IFlyStrategy {
+	+ Fly()
+}
+
+interface IWalkStrategy {
+	+ Walk()
+}
+
+class Duck {
+	+ Name()
+	+ Fly()
+	+ Walk()
+}
+
+class FastWalkStrategy {
+	+ Walk()
+}
+
+class SlowWalkStrategy {
+	+ Walk()
+}
+
+class HighFlyingStrategy {
+	+ Fly()
+}
+
+class LowFlyingStrategy {
+	+ Fly()
+}
+
+note left of LowFlyingStrategy::Fly #yellow
+	"The duck is flying low"
+end note
+
+FastWalkStrategy -up-|> IWalkStrategy
+SlowWalkStrategy -up-|> IWalkStrategy
+
+LowFlyingStrategy -up-|> IFlyStrategy
+HighFlyingStrategy -up-|> IFlyStrategy
+
+Duck -down-> IFlyStrategy
+Duck -down-> IWalkStrategy
+
+
+@enduml

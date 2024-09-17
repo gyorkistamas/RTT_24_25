@@ -1,0 +1,32 @@
+@startuml Template method
+
+abstract class TemplateClass {
+	+ TemplateMethod()
+	# abstract Operation1()
+	# Operation2()
+	# virtual Operation3()
+}
+
+note right of TemplateClass::TemplateMethod #LightBlue
+...
+Operation1();
+...
+Operation2();
+...
+Operation3();
+
+endnote
+
+class ConcreteClassA {
+	Operation1()
+	Operation3()
+}
+
+class ConcreteClassB {
+	Operation1()
+}
+
+ConcreteClassA -up-|> TemplateClass
+ConcreteClassB -up-|> TemplateClass
+
+@enduml
