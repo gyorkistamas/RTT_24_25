@@ -1,0 +1,41 @@
+Table tanulok {
+  neptun varchar2 [pk]
+  nev varchar2
+  evfolyam int
+  szak_id int
+  ugyintezo_id int
+}
+
+Table telefonszamok {
+  id int [pk]
+  telefonszam varchar2
+  tanulo_id int
+}
+
+Table szakok {
+  id int [pk]
+  szak varchar2
+}
+
+Table ugyintezo {
+  id int [pk]
+  nev varchar2
+}
+
+Table targyak {
+  kod varchar2 [pk]
+  nev varchar2
+}
+
+Table jegyek {
+  hallgato_id int [pk]
+  targy_id int [pk]
+  jegy int
+}
+
+Ref: tanulok.neptun < telefonszamok.tanulo_id
+Ref: ugyintezo.id < tanulok.ugyintezo_id
+Ref: szakok.id < tanulok.szak_id
+
+Ref: targyak.kod < jegyek.targy_id
+Ref: tanulok.neptun < jegyek.hallgato_id

@@ -1,0 +1,21 @@
+Table compactdisks {
+  cd_id int [pk]
+  album varchar2
+  band_id int
+}
+
+Table tracks {
+  tracknumber int [pk]
+  cd_id int [pk]
+  title varchar2
+}
+
+Table band {
+  band_id int [pk, increment]
+  name varchar2
+  founded int
+}
+
+
+Ref: band.band_id < compactdisks.band_id
+Ref: compactdisks.cd_id < tracks.cd_id
