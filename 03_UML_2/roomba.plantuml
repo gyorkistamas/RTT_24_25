@@ -1,0 +1,38 @@
+@startuml Roomba
+start
+
+:Bekapcsolás;
+:Környezet szkennelése;
+:Térkép generálása;
+:Útvonalat készítése;
+:Porszívó elindul;
+
+while (Útvonal követése)
+	if (Útvonal befejezve?) then (igen)
+		label lab1
+		label lab2
+		label lab3
+		label lab5
+		label lab6
+		label lab7
+		label off
+		:Porszívó kikapcsolása;
+		:Visszatérés a töltőállomásra;
+		:Kikapcsolás;
+		stop
+	else (nem)
+		if (Akkumlátor alacsony?) then (igen)
+			label lb4
+			goto off
+		else (nem)
+			if (Porzsák tele?) then (igen)
+				:Mozgás leállítása;
+				:Teli porzsák jelzése;
+				goto off
+			else (nem)
+			endif
+		endif
+	endif
+endwhile
+stop
+@enduml

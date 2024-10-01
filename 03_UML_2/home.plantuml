@@ -1,0 +1,35 @@
+@startuml Smarthome
+
+cloud "API" as api #lightblue
+actor Felhasználó
+node nodeMCU
+entity Szenzor
+entity "RFID olvasó" as rfid
+entity Eszköz
+
+frame WebSzerver#lightgrey {
+	node RasberryPI
+	node Laravel #red
+	database MySQL #lightblue
+}
+
+WebSzerver -down-> Felhasználó : Adat megjelenítése
+Felhasználó -->WebSzerver : Adat lekérdezése
+
+WebSzerver -up-> api : Adatok lekérdezése
+api -right-> WebSzerver : status
+
+nodeMCU -up-> api : HTTP POST request
+api -down-> nodeMCU : response status
+
+Szenzor -up-> nodeMCU : adat küldése
+rfid -up-> nodeMCU : adat küldése
+nodeMCU -down-> Eszköz : KI/BE
+
+
+RasberryPI -down-> Laravel
+Laravel -up-> RasberryPI
+Laravel -down-> MySQL
+MySQL -up-> Laravel
+
+@enduml

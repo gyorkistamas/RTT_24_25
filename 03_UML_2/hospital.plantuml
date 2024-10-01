@@ -1,0 +1,29 @@
+@startuml Hospital visit
+start
+:Beteg megérkezik;
+
+while (Beteg regisztrálva?) is (nem)
+: Beteg regisztrálása;
+endwhile (igen)
+
+while (Orvos elérhető?) is (nem)
+: Várakozás az orvosra;
+endwhile (igen)
+
+:Beteg állapotának felvétele;
+:Beteg kezelése;
+
+if (Kell későbbi kezelés?) then (igen)
+	:Időpont egyeztetése;
+else (nem)
+endif
+
+if (Kell-e gyógyszert felírni?) then (igen)
+	:Gyógyszer felírása;
+else (nem)
+endif
+
+:Beteg távozik;
+
+stop
+@enduml
