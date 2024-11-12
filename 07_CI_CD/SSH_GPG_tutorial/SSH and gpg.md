@@ -30,4 +30,5 @@ gpg --armor --export <ID>
 ```powershell
 git config --global user.signingkey <KULCS>
 git config --global commit.gpgsign true
+git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
 ```
